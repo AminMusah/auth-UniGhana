@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
 import TimeLineIcon from "remixicon-react/TimeLineIcon";
 import Menu2LineIcon from "remixicon-react/Menu2LineIcon";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 function Header() {
   let { isAuth,setIsAuth } = useContext(UserContext);
+
+  const navigate = useNavigate()
 
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -19,7 +21,7 @@ function Header() {
     setIsAuth(false)
     localStorage.removeItem("isAuth", isAuth);
 
-    window.location.replace("/login");
+    navigate("/login");
   };
 
   return (

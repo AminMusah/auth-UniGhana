@@ -4,9 +4,11 @@ import MiniLoader from "../components/MiniLoader";
 import production from "../../api/base";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import { Navigate,useNavigate } from "react-router-dom";
 function Register() {
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate()
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,7 +20,7 @@ function Register() {
       toast: true,
       position: "top",
       showConfirmButton: false,
-      timer: 10000,
+      timer: 4000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -38,10 +40,9 @@ function Register() {
       const res = await axios.post(`${production}/api/register`, {
         name,email,password
       })
-      welcomeAlert()
-
       setLoading(true)
-      res.data && window.location.replace('/login')
+      res.data && navigate('/login')
+      welcomeAlert()
     } catch (err) {
       setError(err.response.data.message)
       console.log(err)

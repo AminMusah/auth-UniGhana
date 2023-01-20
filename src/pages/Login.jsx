@@ -5,9 +5,11 @@ import production from "../../api/base";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   let { isAuth, setIsAuth } = useContext(UserContext);  
+  const navigate = useNavigate()
 
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -20,7 +22,7 @@ function Login() {
       toast: true,
       position: "top",
       showConfirmButton: false,
-      timer: 10000,
+      timer: 4000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -42,16 +44,14 @@ function Login() {
         email,
         password,
       });
-      welcomeAlert()
       setLoading(true)
       const token = res.data.token;
       const userId = res.data.user._id;
       localStorage.setItem("token", token);
       localStorage.setItem("user", userId);
       setIsAuth(true);
-      res.data && window.location.replace("/dashboard");
-
-
+      res.data && navigate('/dashboard')
+      welcomeAlert()
     } catch (err) {
       console.log(err);
       setError(err.response.data.message);
