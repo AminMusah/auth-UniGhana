@@ -21,7 +21,7 @@ function Register() {
       })
       console.log(res)
       setLoading(true)
-    //   res.data && window.location.replace('/login')
+      res.data && window.location.replace('/login')
     } catch (err) {
       setError(err.response.data.message)
       console.log(err)

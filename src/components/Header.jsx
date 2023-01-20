@@ -24,7 +24,7 @@ function Header() {
             <h3>UniGhana</h3>
           </Link>
 
-          <nav className={`sm:flex transition-all duration-1000 ${openMenu ? "flex items-center" : "w-1/3 hidden"}`} >
+          <nav className={`sm:flex transition-all duration-1000 ${openMenu ? "flex items-center" :" hidden"}`} >
             <ul className="fixed sm:static top-28 h-full w-8/12 sm:top-0 right-0 flex flex-between items-start flex-col sm:flex-row sm:w-1/3  text-green p-6 z-10 transform transition-all duration-1000 bg-blue">
               <li>
                 <Link to="/" className="text-green sm:ml-7">
