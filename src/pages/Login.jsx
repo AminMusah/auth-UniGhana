@@ -39,12 +39,11 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
+      setLoading(true)
       const res = await axios.post(`${production}/api/login`, {
         email,
         password,
       });
-      setLoading(true)
       const token = res.data.token;
       const userId = res.data.user._id;
       localStorage.setItem("token", token);
@@ -53,6 +52,8 @@ function Login() {
       res.data && navigate('/dashboard')
       welcomeAlert()
     } catch (err) {
+      setLoading(false)
+
       console.log(err);
       setError(err.response.data.message);
     }

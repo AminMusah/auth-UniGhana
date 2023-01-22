@@ -37,13 +37,14 @@ function Register() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
+      setLoading(true)
       const res = await axios.post(`${production}/api/register`, {
         name,email,password
       })
-      setLoading(true)
       res.data && navigate('/login')
       welcomeAlert()
     } catch (err) {
+      setLoading(false)
       setError(err.response.data.message)
       console.log(err)
     }
