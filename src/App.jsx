@@ -13,8 +13,8 @@ function App() {
   return ( 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={ isAuth ? <Dashboard/> : <Register />} />
+        <Route path="/login" element={isAuth ? <Dashboard/> : <Login />} />
         <Route path="/dashboard" element={ isAuth ? <Dashboard /> : <Login/>} />
       </Routes>
   )

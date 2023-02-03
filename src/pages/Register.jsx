@@ -4,7 +4,7 @@ import MiniLoader from "../components/MiniLoader";
 import production from "../../api/base";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Navigate,useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 function Register() {
   const [loading, setLoading] = useState(false);
 
@@ -89,11 +89,13 @@ function Register() {
             >
               {error}
             </div> : '' }
-          <button className="border-none font-inherit mt-4 cursor-pointer flex items-center gap-6 max-w-max-content py-2 px-12 font-medium text-lg uppercase rounded-lg transition-all bg-blue">
+          <button className="relative border-none font-inherit mt-4 cursor-pointer flex items-center justify-center gap-6 w-full h-14 py-2 px-12 font-medium text-lg uppercase rounded-lg transition-all bg-blue">
             {loading ? <MiniLoader /> : ""}
-            <span className="ml-2 text-green">Register</span>
+            <span className="text-green absolute">Register</span>
           </button>
-        </form>
+          <div className="flex items-center mt-3">
+            <p className="text-lg"> Already have an account? </p> <Link to="/login" className="text-lg text-blue ml-[5px] font-bold">Login</Link>
+          </div>        </form>
       </div>
     </div>
   );
